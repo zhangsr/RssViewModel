@@ -8,7 +8,9 @@ import com.android.volley.VolleyError;
 import java.util.List;
 
 import me.zsr.rssbean.Article;
+import me.zsr.rssbean.ArticleDao;
 import me.zsr.rssbean.Subscription;
+import me.zsr.rssbean.SubscriptionDao;
 import me.zsr.rsscommon.LogUtil;
 import me.zsr.rsscommon.VolleySingleton;
 import me.zsr.rssmodel.ArticleModel;
