@@ -76,6 +76,33 @@ public class ArticleListViewModel {
         });
     }
 
+    public void loadAll() {
+        if (mIsLoading) {
+            return;
+        }
+        mIsLoading = true;
+
+        ThreadManager.postInBackground(new Runnable() {
+            @Override
+            public void run() {
+                mCacheDataList.clear();
+                mCacheDataList.addAll(ArticleModel.getInstance().queryAll());
+
+                ThreadManager.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        mLiveDataList = new ArrayList<>();
+                        for (Article article : mCacheDataList) {
+                            mLiveDataList.add(article.clone());
+                        }
+                        mObserver.onDataChanged(mLiveDataList);
+                        mIsLoading = false;
+                    }
+                });
+            }
+        });
+    }
+
     public void load(final Subscription... subscriptions) {
         List<Long> ids = new ArrayList<>();
         for (Subscription subscription : subscriptions) {
