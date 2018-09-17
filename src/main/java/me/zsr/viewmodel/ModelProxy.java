@@ -80,6 +80,11 @@ public class ModelProxy {
         VolleySingleton.getInstance().addToRequestQueue(request);
     }
 
+    public static void addSubscription(List<Subscription> subscriptions) {
+        SubscriptionModel.getInstance().insert(subscriptions);
+    }
+
+
     public static void requestUpdateAll() {
         SubscriptionModel.getInstance().fetchAll();
     }
