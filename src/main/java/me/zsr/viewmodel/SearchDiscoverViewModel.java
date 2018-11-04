@@ -49,7 +49,7 @@ public class SearchDiscoverViewModel extends DiscoverViewModel {
     private void searchByFeedly(final String keyword) throws URISyntaxException {
         List<BasicNameValuePair> params = new LinkedList<>();
         params.add(new BasicNameValuePair("query", keyword));
-        final String requestUrl = URIUtils.createURI("http", "cloud.feedly.com", -1,
+        final String requestUrl = URIUtils.createURI("http", "feedly.com", -1,
                 "/v3/search/feeds", URLEncodedUtils.format(params, "utf-8"), null).toString();
         VolleySingleton.getInstance().getRequestQueue().cancelAll(this);
         StringRequest request = new StringRequest(requestUrl,
