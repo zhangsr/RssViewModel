@@ -36,6 +36,10 @@ public class ModelProxy {
         SubscriptionModel.getInstance().delete(subscriptions);
     }
 
+    public static void updateSubscription(Subscription... subscriptions) {
+        SubscriptionModel.getInstance().update(subscriptions);
+    }
+
     public void saveArticle(final Article article) {
         ArticleModel.getInstance().saveArticle(article);
     }
