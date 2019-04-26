@@ -32,6 +32,14 @@ public class ModelProxy {
         ArticleModel.getInstance().markRead(read, subscriptionId);
     }
 
+    public static void deleteArticle(List<Article> articles) {
+        ArticleModel.getInstance().delete(articles);
+    }
+
+    public static List<Article> loadAllArticle() {
+        return ArticleModel.getInstance().queryAll();
+    }
+
     public static void deleteSubscription(Subscription... subscriptions) {
         SubscriptionModel.getInstance().delete(subscriptions);
     }
