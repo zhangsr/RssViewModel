@@ -96,6 +96,10 @@ public class ModelProxy {
         SubscriptionModel.getInstance().insert(subscriptions);
     }
 
+    public static long countArticleSync(long subscriptionId) {
+        return ArticleModel.getInstance().countSync(subscriptionId);
+    }
+
 
     public static void requestUpdateAll() {
         SubscriptionModel.getInstance().fetchAll();
