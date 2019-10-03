@@ -50,7 +50,7 @@ public class PresetDiscoverViewModel extends DiscoverViewModel {
                         }
                     });
 
-                    LogUtil.i("preloadData " + mCacheDataList.size());
+                    LogUtil.i("preloadData end, size=" + mCacheDataList.size());
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }

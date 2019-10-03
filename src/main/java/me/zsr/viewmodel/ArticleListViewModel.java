@@ -1,5 +1,8 @@
 package me.zsr.viewmodel;
 
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -7,7 +10,9 @@ import java.util.List;
 import me.zsr.rssbean.Article;
 import me.zsr.rssbean.Subscription;
 import me.zsr.rsscommon.ThreadManager;
+import me.zsr.rsscommon.VolleySingleton;
 import me.zsr.rssmodel.ArticleModel;
+import me.zsr.rssmodel.ClickedArticleRequest;
 import me.zsr.rssmodel.ModelAction;
 import me.zsr.rssmodel.ModelObserver;
 
@@ -150,10 +155,25 @@ public class ArticleListViewModel {
         }
 
         Article data = dataList.get(pos);
+        if (data == null) {
+            return;
+        }
         if (!data.getRead()) {
             ArticleModel.getInstance().markRead(true, data);
         }
 
+        Subscription subscription = ModelProxy.getSubscriptionById(data.getSubscriptionId());
+        if (subscription == null) {
+            return;
+        }
+        ClickedArticleRequest request = new ClickedArticleRequest(subscription,
+                data, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        });
+        VolleySingleton.getInstance().addToRequestQueue(request);
     }
 
 }

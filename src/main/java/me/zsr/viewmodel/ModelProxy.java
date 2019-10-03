@@ -63,6 +63,25 @@ public class ModelProxy {
                 SubscriptionDao.Properties.Id.eq(id)).list();
     }
 
+    public static Subscription getSubscriptionById(long id) {
+        List<Subscription> subscriptionList = DBManager.getSubscriptionDao().queryBuilder().where(
+                SubscriptionDao.Properties.Id.eq(id)).list();
+        if (subscriptionList == null || subscriptionList.size() == 0) {
+            return null;
+        } else {
+            return subscriptionList.get(0);
+        }
+    }
+
+    public static boolean hasSubscribed(String url) {
+        return DBManager.getSubscriptionDao().queryBuilder().where(
+                SubscriptionDao.Properties.Url.eq(url)).count() > 0;
+    }
+
+    public static long getSubscriptionCount() {
+        return DBManager.getSubscriptionDao().queryBuilder().count();
+    }
+
     public static void addSubscriptionByUrl(final String url) {
         if (TextUtils.isEmpty(url)) {
             return;
