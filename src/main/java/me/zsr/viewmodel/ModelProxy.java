@@ -13,6 +13,7 @@ import me.zsr.rssbean.Subscription;
 import me.zsr.rssbean.SubscriptionDao;
 import me.zsr.rsscommon.LogUtil;
 import me.zsr.rsscommon.VolleySingleton;
+import me.zsr.rssmodel.ArticleListRequest;
 import me.zsr.rssmodel.ArticleModel;
 import me.zsr.rssmodel.DBManager;
 import me.zsr.rssmodel.SubscriptionModel;
@@ -122,5 +123,15 @@ public class ModelProxy {
 
     public static void requestUpdateAll() {
         SubscriptionModel.getInstance().fetchAll();
+    }
+
+    public static void requestArticleList(String url, Response.Listener<List<Article>> listener) {
+        ArticleListRequest request = new ArticleListRequest(url, listener, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        });
+        VolleySingleton.getInstance().addToRequestQueue(request);
     }
 }
