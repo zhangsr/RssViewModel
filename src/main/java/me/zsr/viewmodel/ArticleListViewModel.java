@@ -60,7 +60,7 @@ public class ArticleListViewModel {
         }
         mIsLoading = true;
 
-        ThreadManager.postInBackground(new Runnable() {
+        ThreadManager.execute(new Runnable() {
             @Override
             public void run() {
                 mCacheDataList.clear();
@@ -87,7 +87,7 @@ public class ArticleListViewModel {
         }
         mIsLoading = true;
 
-        ThreadManager.postInBackground(new Runnable() {
+        ThreadManager.execute(new Runnable() {
             @Override
             public void run() {
                 mCacheDataList.clear();
@@ -126,7 +126,7 @@ public class ArticleListViewModel {
         }
         mIsLoading = true;
 
-        ThreadManager.postInBackground(new Runnable() {
+        ThreadManager.execute(new Runnable() {
             @Override
             public void run() {
                 mCacheDataList.clear();

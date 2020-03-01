@@ -26,7 +26,7 @@ public class PresetDiscoverViewModel extends DiscoverViewModel {
     }
 
     public void preloadData() {
-        ThreadManager.postInBackground(new Runnable() {
+        ThreadManager.execute(new Runnable() {
             @Override
             public void run() {
                 String presetJson = FileUtil.readAssetFie(mContext, "preset_discover.json");
